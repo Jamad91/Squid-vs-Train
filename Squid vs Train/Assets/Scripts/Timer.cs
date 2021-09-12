@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] int startingTime = 5;
+    [SerializeField] float timeLeft = 5f;
+    int intTime;
     Text timerText;
 
     // Start is called before the first frame update
@@ -17,7 +18,17 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (startingTime > 0) ;
-        timerText.text = startingTime.ToString();
+        intTime = (int)timeLeft;
+        timerText.text = intTime.ToString();
+        if (intTime > 0)
+        {
+            timeLeft -= Time.deltaTime;
+        }
     }
+
+    //IEnumerator DecreaseTime()
+    //{
+    //    yield return new WaitForSeconds(1);
+    //    startingTime--;
+    //}
 }
