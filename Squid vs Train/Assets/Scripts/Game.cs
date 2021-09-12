@@ -7,13 +7,14 @@ public class Game : MonoBehaviour
     [SerializeField] GameObject squid;
     [SerializeField] GameObject train;
 
+    float timeLeft;
     float squidPos = 0f;
     float trainPos = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        timeLeft = FindObjectOfType<Timer>().timeLeft;
     }
 
     // Update is called once per frame
@@ -56,7 +57,7 @@ public class Game : MonoBehaviour
 
     IEnumerator Movement()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(timeLeft);
         squid.transform.position = new Vector3(1.8f * squidPos, squid.transform.position.y, 0);
         train.transform.position = new Vector3(1.8f * trainPos, train.transform.position.y, 0);
     }
