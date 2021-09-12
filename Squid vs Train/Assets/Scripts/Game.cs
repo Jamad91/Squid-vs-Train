@@ -20,6 +20,7 @@ public class Game : MonoBehaviour
     void Update()
     {
         SquidMove();
+        TrainMove();
     }
 
     private void SquidMove()
@@ -35,7 +36,22 @@ public class Game : MonoBehaviour
         }
 
         squid.transform.position = new Vector3(1.8f * squidPos, squid.transform.position.y, 0);
-        Debug.Log(squidPos);
-        Debug.Log(squid.transform.position.x);
     }
+
+    private void TrainMove()
+    {
+        if (trainPos > -1 && Input.GetKeyDown("a"))
+        {
+            trainPos -= 1;
+        }
+
+        if (trainPos < 1 && Input.GetKeyDown("d"))
+        {
+            trainPos += 1;
+        }
+
+        train.transform.position = new Vector3(1.8f * trainPos, train.transform.position.y, 0);
+    }
+
+
 }
