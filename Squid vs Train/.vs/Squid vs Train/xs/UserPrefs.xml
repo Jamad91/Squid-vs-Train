@@ -1,15 +1,18 @@
 ﻿<Properties StartupConfiguration="{F7584419-5F4D-67ED-0C0C-88CCFC6355A1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Game.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Timer.cs">
     <Files>
       <File FileName="Assets/Scripts/Squid.cs" Line="6" Column="2" />
-      <File FileName="Assets/Scripts/Game.cs" Line="11" Column="21" />
+      <File FileName="Assets/Scripts/Game.cs" Line="62" Column="96" />
+      <File FileName="Assets/Scripts/Timer.cs" Line="7" Column="8" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Squid vs Train" expanded="True">
-            <Node name="Assets" expanded="True" selected="True">
-              <Node name="Scripts" expanded="True" />
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Timer.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>

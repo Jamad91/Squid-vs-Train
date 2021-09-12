@@ -56,7 +56,7 @@ public class Game : MonoBehaviour
 
     IEnumerator Movement()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         squid.transform.position = new Vector3(1.8f * squidPos, squid.transform.position.y, 0);
         train.transform.position = new Vector3(1.8f * trainPos, train.transform.position.y, 0);
     }
