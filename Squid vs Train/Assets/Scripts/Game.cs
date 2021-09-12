@@ -21,6 +21,7 @@ public class Game : MonoBehaviour
     {
         SquidMove();
         TrainMove();
+        StartCoroutine(Movement());
     }
 
     private void SquidMove()
@@ -35,7 +36,7 @@ public class Game : MonoBehaviour
             squidPos += 1;
         }
 
-        squid.transform.position = new Vector3(1.8f * squidPos, squid.transform.position.y, 0);
+        // squid.transform.position = new Vector3(1.8f * squidPos, squid.transform.position.y, 0);
     }
 
     private void TrainMove()
@@ -50,8 +51,14 @@ public class Game : MonoBehaviour
             trainPos += 1;
         }
 
-        train.transform.position = new Vector3(1.8f * trainPos, train.transform.position.y, 0);
+        // train.transform.position = new Vector3(1.8f * trainPos, train.transform.position.y, 0);
     }
 
+    IEnumerator Movement()
+    {
+        yield return new WaitForSeconds(3);
+        squid.transform.position = new Vector3(1.8f * squidPos, squid.transform.position.y, 0);
+        train.transform.position = new Vector3(1.8f * trainPos, train.transform.position.y, 0);
+    }
 
 }
