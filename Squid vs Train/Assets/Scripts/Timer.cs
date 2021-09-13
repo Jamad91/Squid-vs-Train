@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     [SerializeField] public float timeLeft = 5f;
+    [SerializeField] GameObject Game;
 
     int intTime;
     Text timerText;
@@ -25,11 +26,18 @@ public class Timer : MonoBehaviour
         {
             timeLeft -= Time.deltaTime;
         }
+        if (Game.GetComponent<Game>().GameOver())
+        {
+            timerText.fontSize = 40;
+            if (Game.GetComponent<Game>().Winner() == "Squid")
+            {
+                timerText.text = "Squid Wins!";
+            }
+            else
+            {
+                timerText.text = "Train Wins!";
+            }
+        }
     }
 
-    //IEnumerator DecreaseTime()
-    //{
-    //    yield return new WaitForSeconds(1);
-    //    startingTime--;
-    //}
 }

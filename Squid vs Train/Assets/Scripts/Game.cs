@@ -10,11 +10,15 @@ public class Game : MonoBehaviour
     float timeLeft;
     float squidPos = 0f;
     float trainPos = 0f;
+    bool squidCollide = false;
+    bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
     {
         timeLeft = FindObjectOfType<Timer>().timeLeft;
+        
+
     }
 
     // Update is called once per frame
@@ -23,6 +27,8 @@ public class Game : MonoBehaviour
         SquidMove();
         TrainMove();
         StartCoroutine(Movement());
+
+        
     }
 
     private void SquidMove()
@@ -61,9 +67,29 @@ public class Game : MonoBehaviour
         squid.transform.position = new Vector3(1.8f * squidPos, squid.transform.position.y, 0);
         train.transform.position = new Vector3(1.8f * trainPos, train.transform.position.y, 0);
         train.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 10f);
-        
+        if (train.GetComponent<Train>().IsFinishedCrossed())
+        {
+            squidCollide = train.GetComponent<Train>().IsSquidHit();
+            gameOver = true;
+        }
+
     }
 
+    public bool GameOver()
+    {
+        return gameOver;
+    }
 
+    public string Winner()
+    {
+        if (squidCollide)
+        {
+            return "Train";
+        }
+        else
+        {
+            return "Squid";
+        }
+    }
 
 }
