@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class Squid : MonoBehaviour
 {
-    
-    // Start is called before the first frame update
-    void Start()
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.name == "Game Boundary")
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-     
 }

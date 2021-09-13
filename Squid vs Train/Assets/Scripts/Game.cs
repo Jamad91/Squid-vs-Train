@@ -17,33 +17,30 @@ public class Game : MonoBehaviour
     void Start()
     {
         timeLeft = FindObjectOfType<Timer>().timeLeft;
-        
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        SquidMove();
-        TrainMove();
-        StartCoroutine(Movement());
-
-        
+        if (!gameOver)
+        {
+            SquidMove();
+            TrainMove();
+        }
+        StartCoroutine(Movement());   
     }
 
     private void SquidMove()
     {
-        if (squidPos > -1 && Input.GetKeyDown("left"))
-        {
-            squidPos -= 1;
-        }
+            if (squidPos > -1 && Input.GetKeyDown("left"))
+            {
+                squidPos -= 1;
+            }
 
-        if (squidPos < 1 && Input.GetKeyDown("right"))
-        {
-            squidPos += 1;
-        }
-
-        // squid.transform.position = new Vector3(1.8f * squidPos, squid.transform.position.y, 0);
+            if (squidPos < 1 && Input.GetKeyDown("right"))
+            {
+                squidPos += 1;
+            }
     }
 
     private void TrainMove()
@@ -57,22 +54,25 @@ public class Game : MonoBehaviour
         {
             trainPos += 1;
         }
-
-        // train.transform.position = new Vector3(1.8f * trainPos, train.transform.position.y, 0);
     }
 
     IEnumerator Movement()
     {
         yield return new WaitForSeconds(timeLeft);
-        squid.transform.position = new Vector3(1.8f * squidPos, squid.transform.position.y, 0);
-        train.transform.position = new Vector3(1.8f * trainPos, train.transform.position.y, 0);
-        train.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 10f);
-        if (train.GetComponent<Train>().IsFinishedCrossed())
+        if (!gameOver)
         {
-            squidCollide = train.GetComponent<Train>().IsSquidHit();
-            gameOver = true;
+            squid.transform.position = new Vector3(1.8f * squidPos, squid.transform.position.y, 0);
+            train.transform.position = new Vector3(1.8f * trainPos, train.transform.position.y, 0);
         }
-
+        if (train)
+        {
+            train.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 10f);
+            if (train.GetComponent<Train>().IsFinishedCrossed())
+            {
+                squidCollide = train.GetComponent<Train>().IsSquidHit();
+                gameOver = true;
+            }
+        }
     }
 
     public bool GameOver()
