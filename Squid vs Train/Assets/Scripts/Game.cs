@@ -60,6 +60,10 @@ public class Game : MonoBehaviour
         yield return new WaitForSeconds(timeLeft);
         squid.transform.position = new Vector3(1.8f * squidPos, squid.transform.position.y, 0);
         train.transform.position = new Vector3(1.8f * trainPos, train.transform.position.y, 0);
+        train.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 10f);
+        
     }
+
+
 
 }
