@@ -6,6 +6,7 @@ public class Game : MonoBehaviour
 {
     [SerializeField] GameObject squid;
     [SerializeField] GameObject train;
+    [SerializeField] GameObject gameOverScreen;
 
     float timeLeft;
     float squidPos = 0f;
@@ -27,7 +28,11 @@ public class Game : MonoBehaviour
             SquidMove();
             TrainMove();
         }
-        StartCoroutine(Movement());   
+        StartCoroutine(Movement());
+        if (!train)
+        {
+            gameOverScreen.SetActive(true);
+        }
     }
 
     private void SquidMove()
