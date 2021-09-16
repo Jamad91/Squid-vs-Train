@@ -12,6 +12,7 @@ public class Game : MonoBehaviour
     float squidPos = 0f;
     float trainPos = 0f;
     bool squidCollide = false;
+    bool gameStart = false;
     bool gameOver = false;
 
     // Start is called before the first frame update
@@ -23,7 +24,7 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameOver)
+        if (!gameStart)
         {
             SquidMove();
             TrainMove();
@@ -64,6 +65,7 @@ public class Game : MonoBehaviour
     IEnumerator Movement()
     {
         yield return new WaitForSeconds(timeLeft);
+        gameStart = true;
         if (!gameOver)
         {
             squid.transform.position = new Vector3(1.8f * squidPos, squid.transform.position.y, 0);
